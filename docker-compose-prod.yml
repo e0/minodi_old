@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile-prod
+    volumes:
+      - ./nginx/static:/static
+      - ./nginx/static:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

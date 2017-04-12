@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - site
+    ports:
+      - "80:80"
+    networks:
+      - web
+
+  site:
+    build: ./site
+    command: npm run dev
+    volumes:
+      - ./site/src:/site/src
+      - ./site/dist:/site/dist
+    ports:
+      - "8080:8080"
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
