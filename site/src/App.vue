@@ -5,22 +5,28 @@
 </template>
 
 <script>
+
+import { default as generateColorScheme } from './helpers/color-scheme-generator'
+
 export default {
-  name: 'app'
+  name: 'app',
+  beforeMount () {
+    const colorScheme = generateColorScheme()
+
+    document.body.style.backgroundColor = colorScheme.strong1
+    document.body.style.color = colorScheme.pastel1
+  }
 }
 </script>
 
 <style lang="scss">
-body {
-  background-color: #000;
-}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #ffff00;
+  max-width: 1200px;
+  margin: 0 auto;
   margin-top: 42px;
 }
 </style>
