@@ -10,11 +10,17 @@ import { default as generateColorScheme } from './helpers/color-scheme-generator
 
 export default {
   name: 'app',
-  beforeMount () {
+  mounted () {
     const colorScheme = generateColorScheme()
 
-    document.body.style.backgroundColor = colorScheme.strong1
-    document.body.style.color = colorScheme.pastel1
+    document.body.style.color = colorScheme.strong1
+    document.body.style.backgroundColor = colorScheme.pastel1
+
+    const boxes = document.getElementsByClassName('box')
+    Array.from(boxes).forEach((box) => {
+      box.style.color = colorScheme.pastel2
+      box.style.backgroundColor = colorScheme.strong2
+    })
   }
 }
 </script>
@@ -26,7 +32,16 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 42px;
+  margin: 42px auto;
+}
+
+@media all and (max-width: 1024px) {
+  #app {
+    max-width: 100%;
+    margin: 21px;
+    p {
+      font-size: 1.25em;
+    }
+  }
 }
 </style>
