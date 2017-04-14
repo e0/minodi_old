@@ -18,8 +18,9 @@ export default {
 
     const boxes = document.getElementsByClassName('box')
     Array.from(boxes).forEach((box) => {
-      box.style.color = colorScheme.pastel2
-      box.style.backgroundColor = colorScheme.strong2
+      box.style.color = colorScheme.strong2
+      box.style.backgroundColor = colorScheme.pastel2
+      box.style.border = `1px solid ${colorScheme.strong2}`
     })
   }
 }
