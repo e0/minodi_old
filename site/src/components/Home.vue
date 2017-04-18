@@ -7,67 +7,9 @@
     <hr>
     <h1>Menu</h1>
     <p class="subtitle">you can select any number of options from any category</p>
-    <div class="section">
-      <h2>1. design</h2>
-      <span class="option">Logo</span>
-      <span class="option">UI (User interface)</span>
-      <span class="option">UX (User interaction)</span>
-    </div>
-    <div class="section">
-      <h2>2. front-end development</h2>
-      <span class="option">HTML & CSS</span>
-      <span class="option">JavaScript</span>
-      <span class="option">AngularJS</span>
-      <span class="option">React</span>
-      <span class="option">Vue.js</span>
-      <span class="option">Elm</span>
-      <span class="option">Mithril</span>
-    </div>
-    <div class="section">
-      <h2>3. iOS & macOS</h2>
-      <span class="option">Objective-C</span>
-      <span class="option">Swift</span>
-      <span class="option">React Native</span>
-      <span class="option">RubyMotion</span>
-    </div>
-    <div class="section">
-      <h2>4. back-end development</h2>
-      <span class="option">Django (Python)</span>
-      <span class="option">Ruby on Rails</span>
-      <span class="option">Elixir</span>
-      <span class="option">PHP</span>
-      <span class="option">ASP.NET</span>
-    </div>
-    <div class="section">
-      <h2>5. database</h2>
-      <span class="option">PostgreSQL</span>
-      <span class="option">Microsoft SQL</span>
-      <span class="option">MySQL</span>
-      <span class="option">sqlite</span>
-      <span class="option">MongoDB</span>
-      <span class="option">RethinkDB</span>
-      <span class="option">Neo4j</span>
-    </div>
-    <div class="section">
-      <h2>7. server & automation</h2>
-      <span class="option">Ubuntu</span>
-      <span class="option">Red Hat</span>
-      <span class="option">Azure</span>
-      <span class="option">Windows Server</span>
-      <span class="option">Docker</span>
-      <span class="option">Jenkins</span>
-      <span class="option">Heroku</span>
-    </div>
-    <div class="section">
-      <h2>8. online payments</h2>
-      <span class="option">Stripe</span>
-      <span class="option">Paymill</span>
-    </div>
-    <div class="section">
-      <h2>9. social network integration</h2>
-      <span class="option">Facebook</span>
-      <span class="option">LinkedIn</span>
-      <span class="option">Twitter</span>
+    <div v-for="section in sections" class="section">
+      <h2>{{ section.title }}</h2>
+      <span v-for="option in section.options" class="option">{{ option }}</span>
     </div>
     <hr>
     <div>
@@ -87,7 +29,90 @@
 
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  data () {
+    return {
+      sections: [
+        {
+          title: 'design',
+          options: [
+            'Logo',
+            'UI (User interface)',
+            'UX (User interaction)'
+          ]
+        },
+        {
+          title: 'front-end development',
+          options: [
+            'HTML & CSS',
+            'JavaScript',
+            'AngularJS',
+            'React',
+            'Vue.js',
+            'Elm'
+          ]
+        },
+        {
+          title: 'iOS & macOS',
+          options: [
+            'Objective-C',
+            'Swift',
+            'React',
+            'RubyMotion'
+          ]
+        },
+        {
+          title: 'back-end development',
+          options: [
+            'Django (Python)',
+            'Ruby on Rails',
+            'Elixir',
+            'PHP',
+            'ASP.NET'
+          ]
+        },
+        {
+          title: 'database',
+          options: [
+            'PostgreSQL',
+            'Microsoft SQL',
+            'MySQL',
+            'sqlite',
+            'MongoDB',
+            'RethinkDB',
+            'Neo4j'
+          ]
+        },
+        {
+          title: 'server & automation',
+          options: [
+            'Ubuntu',
+            'Red Hat',
+            'Azure',
+            'Windows Server',
+            'Docker',
+            'Jenkins',
+            'Heroku'
+          ]
+        },
+        {
+          title: 'online payments',
+          options: [
+            'Stripe',
+            'Paymill'
+          ]
+        },
+        {
+          title: 'social network integrations',
+          options: [
+            'Facebook',
+            'LinkedIn',
+            'Twitter'
+          ]
+        }
+      ]
+    }
+  }
 }
 </script>
 
