@@ -3,13 +3,11 @@
     <h1>minodi</h1>
     <hr>
     <h2>a web consulting agency, from design to production</h2>
-    <h2>select what you need help with from the menu below and we will get started</h2>
+    <h2>select the skills you need with and we will get started</h2>
     <hr>
-    <h1>Menu</h1>
-    <p class="subtitle">you can select any number of options from any category</p>
     <div v-for="section in sections" class="section">
       <h2>{{ section.title }}</h2>
-      <span v-for="option in section.options" class="option">{{ option }}</span>
+      <p v-for="option in section.options" class="option">{{ option }}</p>
     </div>
     <hr>
     <div>
@@ -28,89 +26,15 @@
 </template>
 
 <script>
+
+import skills from '../skills'
+
 export default {
   name: 'home',
   data () {
     return {
-      sections: [
-        {
-          title: 'design',
-          options: [
-            'Logo',
-            'UI (User interface)',
-            'UX (User interaction)'
-          ]
-        },
-        {
-          title: 'front-end development',
-          options: [
-            'HTML & CSS',
-            'JavaScript',
-            'AngularJS',
-            'React',
-            'Vue.js',
-            'Elm'
-          ]
-        },
-        {
-          title: 'iOS & macOS',
-          options: [
-            'Objective-C',
-            'Swift',
-            'React',
-            'RubyMotion'
-          ]
-        },
-        {
-          title: 'back-end development',
-          options: [
-            'Django (Python)',
-            'Ruby on Rails',
-            'Elixir',
-            'PHP',
-            'ASP.NET'
-          ]
-        },
-        {
-          title: 'database',
-          options: [
-            'PostgreSQL',
-            'Microsoft SQL',
-            'MySQL',
-            'sqlite',
-            'MongoDB',
-            'RethinkDB',
-            'Neo4j'
-          ]
-        },
-        {
-          title: 'server & automation',
-          options: [
-            'Ubuntu',
-            'Red Hat',
-            'Azure',
-            'Windows Server',
-            'Docker',
-            'Jenkins',
-            'Heroku'
-          ]
-        },
-        {
-          title: 'online payments',
-          options: [
-            'Stripe',
-            'Paymill'
-          ]
-        },
-        {
-          title: 'social network integrations',
-          options: [
-            'Facebook',
-            'LinkedIn',
-            'Twitter'
-          ]
-        }
-      ]
+      selections: {},
+      sections: skills
     }
   }
 }
@@ -125,30 +49,32 @@ hr {
 }
 
 .section {
-  margin-bottom: 42px;
-}
-
-.option, form input, form a {
   display: inline-block;
-  width: calc(25% - 18px);
-  cursor: pointer;
-  margin: 7px;
+  width: calc(25% - 14px);
   padding: 7px;
-  text-align: center;
-  border: 2px solid;
-  box-sizing: border-box;
-  border-radius: 0;
-}
+  margin-bottom: 42px;
 
-.option {
-  font-size: 28px;
+  .option {
+    background-color: #f8f8f8;
 
-  &:hover {
-    background-color: #acdfac;
+    &:hover {
+      cursor: pointer;
+      background-color: #acdfac;
+    }
   }
 }
 
 form {
+  input, a {
+    display: inline-block;
+    width: calc(25% - 18px);
+    margin: 7px;
+    padding: 7px;
+    border: 2px solid;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+
   input {
     font-size: 21px;
     line-height: 28px;
@@ -158,6 +84,7 @@ form {
     color: #fefefe;
     background-color: #000;
     font-size: 28px;
+    text-align: center;
     line-height: 32px;
     text-decoration: none;
   }
@@ -171,9 +98,13 @@ footer {
 }
 
 @media all and (max-width: 1024px) {
-  .option, form input, form a {
+  .section {
+    padding: 0;
+  }
+  .section, form input, form a {
     display: block;
     width: 100%;
+    margin: 0 0 7px 0;
   }
 }
 
