@@ -91,6 +91,7 @@ hr {
   .option {
     background-color: #f8f8f8;
     padding: 3px;
+    user-select: none;
 
     &.selected {
       background-color: #80ca80;
