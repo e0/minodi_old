@@ -23,7 +23,7 @@ const skills = [
     options: [
       'Objective-C',
       'Swift',
-      'React',
+      'React Native',
       'RubyMotion'
     ]
   },

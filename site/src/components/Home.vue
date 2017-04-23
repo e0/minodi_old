@@ -10,13 +10,15 @@
         <h2>{{ section.title }}</h2>
         <p
           v-for="option in section.options"
+          :class="{ selected: isSelected(section.title, option) }"
+          @click="toggleSelection(section.title, option)"
           class="option"
         >{{ option }}</p>
       </div>
     </div>
     <hr>
     <div>
-      <p>Happy with the selections? Fill in your contact details and click send to get started.</p>
+      <p>Happy with the selections? Fill in your contact details and click send. We will try to get back to you as soon as possible.</p>
       <form>
         <input type="text" placeholder="Name">
         <input type="phone" placeholder="Phone">
@@ -40,6 +42,28 @@ export default {
     return {
       selections: {},
       sections: skills
+    }
+  },
+  methods: {
+    toggleSelection (section, option) {
+      if (!(section in this.selections)) {
+        this.selections[section] = [option]
+      } else {
+        if (this.selections[section].includes(option)) {
+          const index = this.selections[section].indexOf(option)
+          this.selections[section].splice(index, 1)
+          if (this.selections[section].length === 0) {
+            delete this.selections[section]
+          }
+        } else {
+          this.selections[section].push(option)
+        }
+      }
+
+      this.$forceUpdate()
+    },
+    isSelected (section, option) {
+      return section in this.selections && this.selections[section].includes(option)
     }
   }
 }
@@ -68,8 +92,7 @@ hr {
     background-color: #f8f8f8;
     padding: 3px;
 
-    &:hover {
-      cursor: pointer;
+    &.selected {
       background-color: #80ca80;
       color: #f2fbf2;
     }
@@ -118,6 +141,14 @@ footer {
   padding: 7px;
   margin-bottom: 0;
   text-align: center;
+}
+
+@media(hover: hover) {
+  .option:hover {
+    cursor: pointer;
+    background-color: #80ca80;
+    color: #f2fbf2;
+  }
 }
 
 @media all and (max-width: 1024px) {
