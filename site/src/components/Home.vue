@@ -5,17 +5,22 @@
     <h2>a web consulting agency, from design to production</h2>
     <h2>select the skills you need with and we will get started</h2>
     <hr>
-    <div v-for="section in sections" class="section">
-      <h2>{{ section.title }}</h2>
-      <p v-for="option in section.options" class="option">{{ option }}</p>
+    <div class="wrapper">
+      <div v-for="section in sections" class="section">
+        <h2>{{ section.title }}</h2>
+        <p
+          v-for="option in section.options"
+          class="option"
+        >{{ option }}</p>
+      </div>
     </div>
     <hr>
     <div>
       <p>Happy with the selections? Fill in your contact details and click send to get started.</p>
       <form>
-        <input type="text" placeholder="name">
-        <input type="phone" placeholder="phone">
-        <input type="email" placeholder="email">
+        <input type="text" placeholder="Name">
+        <input type="phone" placeholder="Phone">
+        <input type="email" placeholder="Email">
         <a class="button" href="#">Send</a>
       </form>
     </div>
@@ -48,44 +53,62 @@ hr {
   height: 5px;
 }
 
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .section {
-  display: inline-block;
-  width: calc(25% - 14px);
-  padding: 7px;
+  flex-grow: 1;
+  width: calc(25% - 42px);
+  margin: 21px;
   margin-bottom: 42px;
 
   .option {
     background-color: #f8f8f8;
+    padding: 3px;
 
     &:hover {
       cursor: pointer;
-      background-color: #acdfac;
+      background-color: #80ca80;
+      color: #f2fbf2;
     }
   }
 }
 
 form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
   input, a {
-    display: inline-block;
-    width: calc(25% - 18px);
-    margin: 7px;
+    flex-grow: 1;
     padding: 7px;
-    border: 2px solid;
     box-sizing: border-box;
+    background-color: #f8f8f8;
     border-radius: 0;
+    height: 42px;
   }
 
   input {
     font-size: 21px;
     line-height: 28px;
+    appearance: none;
+    border: 1px solid #ccc;
+    margin-right: 7px;
+
+    &:focus {
+      border: 1px solid #000;
+      outline: none;
+      outline-width: 0;
+    }
   }
 
   a {
     color: #fefefe;
     background-color: #000;
-    font-size: 28px;
+    font-size: 21px;
     text-align: center;
-    line-height: 32px;
     text-decoration: none;
   }
 }
@@ -99,12 +122,18 @@ footer {
 
 @media all and (max-width: 1024px) {
   .section {
-    padding: 0;
-  }
-  .section, form input, form a {
-    display: block;
     width: 100%;
-    margin: 0 0 7px 0;
+    margin: 0;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+
+    input, a {
+      width: 100%;
+      margin: 7px 0;
+    }
   }
 }
 
