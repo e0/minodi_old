@@ -36,18 +36,12 @@ body {
   h2 {
     font-size: 28px;
   }
-
-  .subtitle {
-    margin-top: -21px;
-    margin-bottom: 42px;
-    font-style: italic;
-  }
 }
 
 @media all and (max-width: 1024px) {
   #app {
     max-width: 100%;
-    margin: 21px;
+    margin: 7px;
 
     h2 {
       font-size: 21px;
