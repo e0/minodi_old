@@ -3,7 +3,7 @@
     <h1>minodi</h1>
     <hr>
     <h2>a web consulting agency, from design to production</h2>
-    <h2>select the skills you need with and we will get started</h2>
+    <h2>select the skills you are looking for and we will get started</h2>
     <hr>
     <div class="wrapper">
       <div v-for="section in sections" class="section">
