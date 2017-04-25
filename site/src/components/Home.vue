@@ -20,20 +20,28 @@
     <div>
       <p>Happy with the selections? Fill in your contact details and click send. We will try to get back to you as soon as possible.</p>
       <form>
-        <input type="text" placeholder="Name">
-        <input type="phone" placeholder="Phone">
-        <input type="email" placeholder="Email">
-        <a class="button" href="#">Send</a>
+        <input type="text" placeholder="Name" v-model="name">
+        <input type="phone" placeholder="Phone" v-model="phone">
+        <input type="email" placeholder="Email" v-model="email">
+        <a @click="sayHello" class="button" href="#">
+          <i class="fa fa-circle-o-notch fa-spin" v-if="sayingHello"></i>
+          <span v-else>Send</span>
+        </a>
       </form>
+      <p v-if="saidHello" class="successMessage">
+        Message sent, thanks for your inquiry!
+      </p>
     </div>
     <footer>
       <p>minodi.com</p>
     </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </div>
 </template>
 
 <script>
 
+import axios from 'axios'
 import skills from '../skills'
 
 export default {
@@ -41,7 +49,13 @@ export default {
   data () {
     return {
       selections: {},
-      sections: skills
+      sections: skills,
+      name: '',
+      phone: '',
+      email: '',
+      errorMessage: '',
+      saidHello: false,
+      sayingHello: false
     }
   },
   methods: {
@@ -64,6 +78,29 @@ export default {
     },
     isSelected (section, option) {
       return section in this.selections && this.selections[section].includes(option)
+    },
+    sayHello (e) {
+      e.preventDefault()
+      this.sayingHello = true
+
+      const payload = {
+        contact: {
+          name: this.name,
+          phone: this.phone,
+          email: this.email
+        },
+        selections: this.selections
+      }
+
+      axios.post('hello', payload)
+        .then(() => {
+          this.saidHello = true
+          this.sayingHello = false
+        })
+        .catch((error) => {
+          this.errorMessage = error.message
+          this.sayingHello = false
+        })
     }
   }
 }
@@ -135,6 +172,10 @@ form {
     text-align: center;
     text-decoration: none;
   }
+}
+
+.successMessage {
+  color: #2B882B;
 }
 
 footer {
