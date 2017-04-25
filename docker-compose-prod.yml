@@ -6,11 +6,25 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile-prod
+    depends_on:
+      - backend
     volumes:
       - ./nginx/static:/static
       - ./nginx/static:/usr/share/nginx/html:ro
     ports:
       - "80:80"
+    networks:
+      - web
+
+  backend:
+    restart: always
+    env_file: ./backend/mailgun.env
+    build: ./backend
+    command: python main.py
+    volumes:
+      - ./backend:/project
+    ports:
+      - "8000:8000"
     networks:
       - web
 
